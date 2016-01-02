@@ -1,10 +1,10 @@
 #!/bin/bash
 #-------------------------------------------------------------------------------
-# up - Add it to your bashrc to make couple "cd .." at a time
+# up - Add it to your .bashrc to make couple "cd .." at a time
 #  by foxdonut
 #-------------------------------------------------------------------------------*
 
-#Add this to your bashrc
+#Add this to your .bashrc
 #
 #Usage : up n
 #Ex:
