@@ -1,0 +1,52 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# testproject - A tool te help test your project
+#  by Arignir (benjamin.grange@epitech.eu)
+#-------------------------------------------------------------------------------
+
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+CYAN="\e[0;36m"
+DEFAULT="\033[00m"
+
+echo -e "$CYAN""Hello ${USER} ! What is the executable name ?"
+read exec_name
+
+if [ ! -f $exec_name ]
+then
+    echo -e "$RED""Executable can't be find :/"
+else
+    echo -e "Ok, i'm gonna test it...""$DEFAULT"
+
+    mkdir -p test
+    rm -f test/out1
+    rm -f test/out2
+    rm -f test/out3
+    touch test/out1
+    touch test/out2
+    touch test/out3
+
+    nb_test=`cat ./test/test | wc -l`
+
+    for ((i=1; i <= $nb_test; i++))
+    do
+	if [ ! -f ./test/result$i ]
+	then
+	    echo -e "$RED""[$i] NOT OK : File ./test/result$1 not found!"
+	else
+	    ./$exec_name `cat ./test/test | head -$i | tail -1` > test/out1
+	    cat ./test/result$i > test/out2
+	    diff test/out1 test/out2 > test/out3 2>&1
+	    result=`cat test/out3`
+	    if [ "$result" == "" ]
+	    then
+		echo -e "$GREEN""[$i] OK""$DEFAULT "
+	    else
+		echo -e "$RED""[$i] NOT OK : ./$exec_name" `cat ./test/test | head -$i | tail -1`"$DEFAULT"
+	    fi
+	fi
+    done
+fi
+rm -f test/out1
+rm -f test/out2
+rm -f test/out3
