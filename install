@@ -1,0 +1,26 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# mkproject - A tool te help create a Epitech project
+#  by Arignir (benjamin.grange@epitech.eu)
+#-------------------------------------------------------------------------------
+
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+CYAN="\e[0;36m"
+DEFAULT="\033[00m"
+
+echo -e "$CYAN""Installing script..."
+
+mkdir -p ~/bin/
+
+rm -f -r ~/bin/template
+mkdir -p ~/bin/template
+cp -n -r template/* ~/bin/template
+
+cp -n -r blim ~/bin/
+cp -n -r github ~/bin/
+cp -n -r mkproject ~/bin/
+cp -n -r testproject ~/bin/
+cp -n -r up ~/bin/
+
+echo -e "$GREEN""Done ! Add your /bin/ to your PATH variable !"

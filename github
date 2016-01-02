@@ -4,10 +4,12 @@
 #  by Arignir (benjamin.grange@epitech.eu)
 #-------------------------------------------------------------------------------
 
+CYAN="\e[0;36m"
 GREEN="\033[0;32m"
 RED="\033[0;31m"
+DEFAULT="\033[00m"
 
-echo "Please enter your github username..."
+echo -e "$CYAN""Please enter your github username..."
 read github_login
 echo "And the project's name on github :"
 read github_project
@@ -21,7 +23,7 @@ git remote set-url --add --push origin "git@github.com:$github_login/$github_pro
 
 if [ "$?" == "0" ]
 then
-    echo -e "$GREEN""Done ! Push add your changes on github ! :)"
+    echo -e "$GREEN""Done ! Please push your changes on github ! :)"
 else
     echo -e "$RED""Can't set the new remote !"
 fi

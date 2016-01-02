@@ -8,10 +8,13 @@
 PROJECT_DIR_PATH=~/rendu/
 TEMPLATE=template/
 ACT_PATH=`pwd`
+
 GREEN="\033[0;32m"
 RED="\033[0;31m"
+CYAN="\e[0;36m"
+DEFAULT="\033[00m"
 
-echo "Hello ${USER}, please enter project name..."
+echo -e "$CYAN""Hello ${USER}, please enter project name..."
 
 read project_name
 read -s -p "and your SSH-key password..." unix_pwd
@@ -38,7 +41,7 @@ then
 	# Move the template to the new dir
 	cp -n -r $TEMPLATE/* $PROJECT_DIR_PATH/$project_name
 
-	# Replace all PROJECT_NAME in the template by the name of the project, and all PROJECT_MAJ_NAME by the name in lowercase (Ideal for macro in .h file)
+	# Replace all PROJECT_NAME in the template by the name of the project, and all PROJECT_MAJ_NAME by the name in uppercase (Ideal for macro in .h file)
 	mv $PROJECT_DIR_PATH/$project_name/src/PROJECT_NAME.c $PROJECT_DIR_PATH/$project_name/src/$project_name.c
 	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/src/*.c
 	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/include/*.h

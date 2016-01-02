@@ -1,0 +1,12 @@
+\#*#
+.#*
+*~
+*.o
+*.a
+test*
+Notes
+TODO
+a.out
+README
+test/*
+test
