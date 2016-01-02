@@ -14,3 +14,5 @@ List of all the tools :
 - testproject - A script that's gonna apply multiple test (from a test file) on an executable and compare the output with what's expected.
 
 - up - A function to add to your bashrc that can do "cd .." n times.
+
+- mrclean - A tool that clean all your temp files (.o, .gch, *~, #*# etc...)

@@ -1,0 +1,18 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# mrclean - A tool that clears all your temp file
+#  by Arignir (benjamin.grange@epitech.eu)
+#-------------------------------------------------------------------------------
+
+CYAN="\e[0;36m"
+DEFAULT="\033[00m"
+
+echo -e "$CYAN""Cleaning repository..."
+
+find -name "*~" -delete
+find -name "#*#" -delete
+find -name "a.out" -delete
+find -name "*.gch" -delete
+find -name "*.o" -delete
+
+echo -e "Done !""$DEFAULT"
