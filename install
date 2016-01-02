@@ -22,4 +22,4 @@ cp -n -r testproject ~/bin/
 cp -n -r up ~/bin/
 cp -n -r mrclean ~/bin/
 
-echo -e "Done ! Add your /bin/ to your PATH variable !""$DEFAULT"
+echo -e "Done ! Add ~/bin/ to your PATH variable !""$DEFAULT"
