@@ -1,0 +1,54 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# mkproject - A tool te help create a Epitech project
+#  by Arignir (benjamin.grange@epitech.eu)
+#-------------------------------------------------------------------------------
+
+# Dir that contains all your project
+PROJECT_DIR_PATH=~/rendu/
+TEMPLATE=template/
+ACT_PATH=`pwd`
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+
+echo "Hello ${USER}, please enter project name..."
+
+read project_name
+read -s -p "and your SSH-key password..." unix_pwd
+project_maj_name=`echo "$project_name" | tr '[:lower:]' '[:upper:]'`
+
+echo -e "\nCreating project name $project_name ..."
+(echo "$unix_pwd" | blim repository create $project_name) > /dev/null
+old_ans="$?"
+(echo "$unix_pwd" | blim repository setacl $project_name ramassage-tek r) > /dev/null
+
+if [ $old_ans == "0" ] && [ "$?" == "0" ]
+then
+
+    echo "Cloning repository..."
+    mkdir -p $PROJECT_DIR_PATH
+    mkdir -p $TEMPLATE
+    cd $PROJECT_DIR_PATH
+    git clone "git@git.epitech.eu:/${USER}/$project_name" > /dev/null
+
+    if [ "$?" == "0" ]
+    then
+
+	cd $ACT_PATH
+	# Move the template to the new dir
+	cp -n -r $TEMPLATE/* $PROJECT_DIR_PATH/$project_name
+
+	# Replace all PROJECT_NAME in the template by the name of the project, and all PROJECT_MAJ_NAME by the name in lowercase (Ideal for macro in .h file)
+	mv $PROJECT_DIR_PATH/$project_name/src/PROJECT_NAME.c $PROJECT_DIR_PATH/$project_name/src/$project_name.c
+	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/src/*.c
+	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/include/*.h
+	sed -i "s/PROJECT_MAJ_NAME/$project_maj_name/g" $PROJECT_DIR_PATH/$project_name/include/*.h
+	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/Makefile
+	echo -e "$GREEN""Done !"
+    else
+	echo -e "$RED""Error : the git clone failed :/"
+    fi
+    cd $ACT_PATH
+else
+    echo -e "$RED""Error while creating the repository. Is the password correct ?"
+fi
