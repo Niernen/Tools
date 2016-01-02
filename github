@@ -1,0 +1,27 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# mkgithub - A tool that link your project to github
+#  by Arignir (benjamin.grange@epitech.eu)
+#-------------------------------------------------------------------------------
+
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+
+echo "Please enter your github username..."
+read github_login
+echo "And the project's name on github :"
+read github_project
+
+echo "Adding github remote..."
+
+git remote remove origin
+git remote add origin git@git.epitech.eu:/${USER}/$(basename "$(pwd)")
+git remote set-url --add --push origin git@git.epitech.eu:/${USER}/$(basename "$(pwd)")
+git remote set-url --add --push origin "git@github.com:$github_login/$github_project.git"
+
+if [ "$?" == "0" ]
+then
+    echo -e "$GREEN""Done ! Push add your changes on github ! :)"
+else
+    echo -e "$RED""Can't set the new remote !"
+fi
