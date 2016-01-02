@@ -7,7 +7,7 @@
 CYAN="\e[0;36m"
 DEFAULT="\033[00m"
 
-echo -e "$CYAN""Installing script..."
+echo -e "$CYAN""Installing scripts..."
 
 mkdir -p ~/bin/
 
