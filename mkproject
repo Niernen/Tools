@@ -14,13 +14,13 @@ RED="\033[0;31m"
 CYAN="\e[0;36m"
 DEFAULT="\033[00m"
 
-echo -e "$CYAN""Hello ${USER}, please enter project name..."
+echo -e "$CYAN""Hello ${USER}, please enter your project name..."
 
 read project_name
 read -s -p "and your SSH-key password..." unix_pwd
 project_maj_name=`echo "$project_name" | tr '[:lower:]' '[:upper:]'`
 
-echo -e "\nCreating project name $project_name ..."
+echo -e "\nCreating project named $project_name ..."
 (echo "$unix_pwd" | blim repository create $project_name) > /dev/null
 old_ans="$?"
 (echo "$unix_pwd" | blim repository setacl $project_name ramassage-tek r) > /dev/null
