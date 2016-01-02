@@ -1,0 +1,25 @@
+#!/bin/bash
+#-------------------------------------------------------------------------------
+# up - Add it to your bashrc to make couple "cd .." at a time
+#  by foxdonut
+#-------------------------------------------------------------------------------*
+
+#Add this to your bashrc
+#
+#Usage : up n
+#Ex:
+#
+#/a/very/deeply/nested/path/somewhere> up 4
+#/a/very>
+
+function up()
+{
+    LIMIT=$1
+    P=$PWD
+    for ((i=1; i <= LIMIT; i++))
+    do
+	P=$P/..
+    done
+    cd $P
+    export MPWD=$P
+}
