@@ -6,7 +6,13 @@
 
 # Dir that contains all your project
 PROJECT_DIR_PATH=~/rendu/
-TEMPLATE=template/
+
+#Name of the template dir
+TEMPLATE_NAME=template
+
+#Location of the template dir
+TEMPLATE_DIR=~/bin
+
 ACT_PATH=`pwd`
 
 GREEN="\033[0;32m"
@@ -30,8 +36,9 @@ if [ $old_ans == "0" ] && [ "$?" == "0" ]
 then
 
     echo "Cloning repository..."
-    mkdir -p $PROJECT_DIR_PATH
-    mkdir -p $TEMPLATE
+    mkdir -p $PROJECT_DIR_PATH/
+    mkdir -p $TEMPLATE_DIR/$TEMPLATE_NAME
+
     cd $PROJECT_DIR_PATH
     git clone "git@git.epitech.eu:/${USER}/$repo_name" > /dev/null
 
@@ -40,8 +47,8 @@ then
 
 	cd $ACT_PATH
 	# Move the template to the new dir
-	cp -n -r $TEMPLATE/* $PROJECT_DIR_PATH/$repo_name
-	cp -n -r $TEMPLATE/.gitignore $PROJECT_DIR_PATH/$repo_name/
+	cp -n -R $TEMPLATE_DIR/$TEMPLATE_NAME/* $PROJECT_DIR_PATH/$repo_name/
+	cp -n -R $TEMPLATE_DIR/$TEMPLATE_NAME/.[^.]* $PROJECT_DIR_PATH/$repo_name/
 
 	# Replace all PROJECT_NAME in the template by the name of the project, and all PROJECT_MAJ_NAME by the name in uppercase (Ideal for macro in .h file)
 	mv $PROJECT_DIR_PATH/$repo_name/src/PROJECT_NAME.c $PROJECT_DIR_PATH/$repo_name/src/$project_name.c

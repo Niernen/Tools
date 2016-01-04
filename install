@@ -13,7 +13,7 @@ mkdir -p ~/bin/
 
 rm -f -r ~/bin/template
 mkdir -p ~/bin/template
-cp -r template/* ~/bin/template
+cp -R template/ ~/bin/
 
 cp -r blim ~/bin/
 cp -r github ~/bin/
