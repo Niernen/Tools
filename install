@@ -13,13 +13,13 @@ mkdir -p ~/bin/
 
 rm -f -r ~/bin/template
 mkdir -p ~/bin/template
-cp -n -r template/* ~/bin/template
+cp -r template/* ~/bin/template
 
-cp -n -r blim ~/bin/
-cp -n -r github ~/bin/
-cp -n -r mkproject ~/bin/
-cp -n -r testproject ~/bin/
-cp -n -r up ~/bin/
-cp -n -r mrclean ~/bin/
+cp -r blim ~/bin/
+cp -r github ~/bin/
+cp -r mkproject ~/bin/
+cp -r testproject ~/bin/
+cp -r up ~/bin/
+cp -r mrclean ~/bin/
 
 echo -e "Done ! Add ~/bin/ to your PATH variable !""$DEFAULT"

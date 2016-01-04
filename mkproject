@@ -15,15 +15,16 @@ CYAN="\e[0;36m"
 DEFAULT="\033[00m"
 
 echo -e "$CYAN""Hello ${USER}, please enter your project name..."
-
 read project_name
+echo -e "And the project repository name..."
+read repo_name
 read -s -p "and your SSH-key password..." unix_pwd
 project_maj_name=`echo "$project_name" | tr '[:lower:]' '[:upper:]'`
 
-echo -e "\nCreating project named $project_name ..."
-(echo "$unix_pwd" | blim repository create $project_name) > /dev/null
+echo -e "\nCreating repository named $repo_name ..."
+(echo "$unix_pwd" | blim repository create $repo_name) > /dev/null
 old_ans="$?"
-(echo "$unix_pwd" | blim repository setacl $project_name ramassage-tek r) > /dev/null
+(echo "$unix_pwd" | blim repository setacl $repo_name ramassage-tek r) > /dev/null
 
 if [ $old_ans == "0" ] && [ "$?" == "0" ]
 then
@@ -32,21 +33,21 @@ then
     mkdir -p $PROJECT_DIR_PATH
     mkdir -p $TEMPLATE
     cd $PROJECT_DIR_PATH
-    git clone "git@git.epitech.eu:/${USER}/$project_name" > /dev/null
+    git clone "git@git.epitech.eu:/${USER}/$repo_name" > /dev/null
 
     if [ "$?" == "0" ]
     then
 
 	cd $ACT_PATH
 	# Move the template to the new dir
-	cp -n -r $TEMPLATE/* $PROJECT_DIR_PATH/$project_name
+	cp -n -r $TEMPLATE/* $PROJECT_DIR_PATH/$repo_name
 
 	# Replace all PROJECT_NAME in the template by the name of the project, and all PROJECT_MAJ_NAME by the name in uppercase (Ideal for macro in .h file)
-	mv $PROJECT_DIR_PATH/$project_name/src/PROJECT_NAME.c $PROJECT_DIR_PATH/$project_name/src/$project_name.c
-	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/src/*.c
-	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/include/*.h
-	sed -i "s/PROJECT_MAJ_NAME/$project_maj_name/g" $PROJECT_DIR_PATH/$project_name/include/*.h
-	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$project_name/Makefile
+	mv $PROJECT_DIR_PATH/$repo_name/src/PROJECT_NAME.c $PROJECT_DIR_PATH/$repo_name/src/$project_name.c
+	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$repo_name/src/*.c
+	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$repo_name/include/*.h
+	sed -i "s/PROJECT_MAJ_NAME/$project_maj_name/g" $PROJECT_DIR_PATH/$repo_name/include/*.h
+	sed -i "s/PROJECT_NAME/$project_name/g" $PROJECT_DIR_PATH/$repo_name/Makefile
 	echo -e "$GREEN""Done !"
     else
 	echo -e "$RED""Error : the git clone failed :/"
