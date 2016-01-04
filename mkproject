@@ -41,6 +41,7 @@ then
 	cd $ACT_PATH
 	# Move the template to the new dir
 	cp -n -r $TEMPLATE/* $PROJECT_DIR_PATH/$repo_name
+	cp -n -r $TEMPLATE/.gitignore $PROJECT_DIR_PATH/$repo_name/
 
 	# Replace all PROJECT_NAME in the template by the name of the project, and all PROJECT_MAJ_NAME by the name in uppercase (Ideal for macro in .h file)
 	mv $PROJECT_DIR_PATH/$repo_name/src/PROJECT_NAME.c $PROJECT_DIR_PATH/$repo_name/src/$project_name.c
