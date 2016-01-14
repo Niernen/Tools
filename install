@@ -21,5 +21,6 @@ cp -r mkproject ~/bin/
 cp -r testproject ~/bin/
 cp -r up ~/bin/
 cp -r mrclean ~/bin/
+cp -r powerpoint ~/bin/
 
 echo -e "Done ! Add ~/bin/ to your PATH variable !""$DEFAULT"

@@ -16,3 +16,5 @@ List of all tools :
 - up - A function to add to your bashrc that can do "cd .." n times.
 
 - mrclean - A tool that clean all your temp files (.o, .gch, *~, #*#, etc...)
+
+- powerpoint - A tool that activate a second monitor via xrandr.
